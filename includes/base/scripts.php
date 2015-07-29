@@ -6,7 +6,7 @@ function load_scripts()
     $scripts = array();
     $scripts_path = get_template_directory_uri() . '/scripts/';
 
-	// HEADER ------------------------------------------------------------
+    // HEADER ------------------------------------------------------------
 
     /** jQuery :: http://jquery.com/ **/
     $scripts['jquery'] = array(
@@ -167,6 +167,31 @@ function load_scripts()
         'local' => $scripts_path . 'vendor/slick/slick.min.js',
         'dependencies' => false,
         'version' => '1.5.5',
+        'set_in_footer' => true
+    );
+
+    /** Slick Slider :: https://github.com/protonet/jquery.inview **/
+    $scripts['inview'] = array(
+        'active' => true,
+        'deregister_first' => false,
+        'handler' => 'inview',
+        'cdn' => '', // make sure the protocol is 'http' and not 'https'
+        'local' => $scripts_path . 'vendor/inview/inview.js',
+        'dependencies' => false,
+        'version' => '1.0',
+        'set_in_footer' => true
+    );
+
+
+    /** flexisel Slider :: https://github.com/9bitStudios/flexisel **/
+    $scripts['flexisel'] = array(
+        'active' => true,
+        'deregister_first' => false,
+        'handler' => 'flexisel',
+        'cdn' => '', // make sure the protocol is 'http' and not 'https'
+        'local' => $scripts_path . 'vendor/flexisel/jquery.flexisel.js',
+        'dependencies' => false,
+        'version' => '1.0.2',
         'set_in_footer' => true
     );
 

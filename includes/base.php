@@ -8,6 +8,18 @@ require_once 'base/helpers.php';
 // Shortcodes
 require_once 'base/shortcodes.php';
 
+//WPML
+add_action('after_setup_theme', 'my_theme_setup');
+function my_theme_setup(){
+    load_theme_textdomain('neurotracker', get_template_directory() . '/languages');
+}
+
+//add class to excerpt
+add_filter( "the_excerpt", "add_class_to_excerpt" );
+function add_class_to_excerpt( $excerpt ) {
+    return str_replace('<p', '<p class="excerpt"', $excerpt);
+}
+
 
 function features_after_setup_theme()
 {
@@ -52,6 +64,11 @@ function features_init()
         remove_templates_support();
     }
 
+    if (!class_exists('Tax_Meta_Class')) {
+        require_once("vendor/Tax-meta-class/Tax-meta-class.php");
+        require_once("base/custom-tax-meta.php");
+    }
+
     // Custom Post Types
     if (!class_exists('CPT')) {
         require_once('vendor/custom-post-types/CPT.php');
@@ -82,12 +99,12 @@ function features_wp_enqueue_scripts()
     wp_enqueue_style('custom_stylesheet');
 
     // Google Fonts
-    wp_register_style('google_font_roboto', 'http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,500italic,700,700italic,900,900italic');
-    wp_enqueue_style('google_font_roboto');
-    wp_register_style('google_font_roboto_slab', 'http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700');
-    wp_enqueue_style('google_font_roboto_slab');
-    wp_register_style('google_font_roboto_mono', 'http://fonts.googleapis.com/css?family=Roboto+Mono:400,300,300italic,400italic,700,700italic');
-    wp_enqueue_style('google_font_roboto_mono');
+    // wp_register_style('google_font_roboto', 'http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,500italic,700,700italic,900,900italic');
+    // wp_enqueue_style('google_font_roboto');
+    // wp_register_style('google_font_roboto_slab', 'http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700');
+    // wp_enqueue_style('google_font_roboto_slab');
+    // wp_register_style('google_font_roboto_mono', 'http://fonts.googleapis.com/css?family=Roboto+Mono:400,300,300italic,400italic,700,700italic');
+    // wp_enqueue_style('google_font_roboto_mono');
 
     // Scripts
     require_once 'base/scripts.php';
@@ -95,5 +112,26 @@ function features_wp_enqueue_scripts()
 
 }
 add_action('wp_enqueue_scripts', 'features_wp_enqueue_scripts');
+function admin_script(){
+    //admin
+    if(is_admin()){
+        wp_enqueue_script('custom_admin_script',get_template_directory_uri().'/scripts/admin/admin_script.js', array('jquery'));
+    }
+}
+add_action('wp_enqueue_scripts', 'features_wp_enqueue_scripts');
+add_action( 'admin_enqueue_scripts', 'admin_script' );
 
+function templateFilter() {
+    if (isset($_GET['post'])) {
+        $id = $_GET['post'];
+        $template = get_post_meta($id, '_wp_page_template', true);
+        $dontShowEditor = array(
+            //'tpl-product-research-studies.php',
+        );
+        if(in_array($template, $dontShowEditor) || in_array($id, $dontShowEditor)){
+            remove_post_type_support( 'page', 'editor' );
+        }
+    }
+}
+add_action('init', 'templateFilter');
 

@@ -1,17 +1,18 @@
-jQuery(document).ready(function ($) {
+
+(function($){
+    $(document).ready(function(){
+       
+    });
 
 
-
-});
-
-jQuery(window).load(function ($) {
+    $(window).load(function() {
 
 
-
-});
-
-jQuery(window).resize(function ($) {
+    });
 
 
+    $(window).resize(function() {
 
-});
+
+    });
+})(jQuery);
