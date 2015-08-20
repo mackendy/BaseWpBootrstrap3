@@ -130,3 +130,398 @@ function flexiselSlider(){
         });
     });
 }
+
+
+/* ---------------------------------------------------------------------------
+ * changeLang
+ * --------------------------------------------------------------------------- */
+
+// function changeLang()
+// {
+// 	jQuery('.pays li a').click(function(e)
+// 	{
+// 		e.preventDefault();
+// 		var pays = this.id;
+// 		var url = jQuery(this).attr('href');
+// 		if(jQuery('input[name=save_pays]').is(':checked')){
+
+// 			jQuery.cookie('pays', pays, {
+// 			    expires : 365,
+// 			    path : '/'
+// 			});
+
+// 		}else{
+// 			//console.log('pas ok');
+// 			document.location.href= url+'/'+pays;
+// 		}
+// 	});
+// }
+
+/* ---------------------------------------------------------------------------
+ * lastItem
+ * --------------------------------------------------------------------------- */
+
+function lastItem(class_name,col,size){
+    var size = size || "17px";
+
+    jQuery(class_name).each(function(a,b){
+        //console.log(b);
+
+        if( ((a+1) % col) === 0){
+            jQuery(b).css('margin-right','0px');
+            //jQuery(b).next().css('clear','both');
+        }else{
+            jQuery(this).css('margin-right',size).css('clear','none');
+        }
+    });
+}
+
+/* ---------------------------------------------------------------------------
+ *  FilterIsotope
+ * --------------------------------------------------------------------------- */
+
+function FilterIsotope(){
+    // init Isotope
+    var container = jQuery('#main-promotion').isotope({
+        // options
+    });
+    // filter items on button click
+    jQuery('#filters').on( 'click', 'a', function() {
+
+        jQuery('.one-sidebare .options #filters li a').removeClass('selected');
+        var filterValue = jQuery(this).attr('data-filter');
+        jQuery(this).addClass('selected');
+        container.isotope({ filter: filterValue });
+
+    });
+}
+
+function EventIsotope(){
+    // init Isotope
+    var container = jQuery('#main-event').isotope({
+        // options
+    });
+    // filter items on button click
+    jQuery('#filters').on( 'click', 'a', function() {
+
+        jQuery('.one-sidebare .options #filters li a').removeClass('selected');
+        var filterValue = jQuery(this).attr('data-filter');
+        jQuery(this).addClass('selected');
+        container.isotope({ filter: filterValue });
+
+    });
+}
+
+/* ---------------------------------------------------------------------------
+ *  show code promo
+ * --------------------------------------------------------------------------- */
+
+function show_code(){
+    jQuery('.show_code').click(function(e){
+        //console.log(e);
+        jQuery(e.currentTarget).parent('.cat-sufix').children('.show_code_hide').slideDown('fast');
+    });
+    jQuery('.show_code_close').click(function(e){
+        //console.log(e);
+        jQuery('.show_code_hide').slideUp('fast');
+    });
+
+}
+
+/* ---------------------------------------------------------------------------
+ *  increment number of click on promo code
+ * --------------------------------------------------------------------------- */
+
+function increment_views(postID){
+
+    // had to add the post id to the permalink in loop as url to postid didn't work
+    var postID = postID;
+    var ajax_url = "http://dev2.indexel.com/agilentcom/wp-admin/admin-ajax.php";
+    // console.log(postID);
+    var data = {
+        action: 'inc_views',
+        post_id: postID
+    };
+    // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
+    jQuery.post(ajax_url, data, function(response) {
+        //update the custom field value without a page refresh
+        console.log('jquerypost');
+
+    });
+
+}
+
+
+/* ---------------------------------------------------------------------------
+ *  CREAT COOKIE
+ * --------------------------------------------------------------------------- */
+function creatCookie(name,value,minutes){
+
+    var date = new Date();
+    var minutes = minutes;
+    date.setTime(date.getTime() + (minutes * 60 * 1000));
+    jQuery.cookie(name, value, {expires : date });
+
+}
+
+/* ---------------------------------------------------------------------------
+ *  CHECK CLICK  ON CODE PROMOTION
+ * --------------------------------------------------------------------------- */
+function checkClick(){
+    jQuery('.show_code').click(function(event) {
+        var postID = jQuery(this).attr('id');
+        var Cookie = jQuery.cookie('promo_code_'+postID);
+        var date = new Date();
+
+        if (Cookie == null) {
+            //CREAT COOKIES
+            console.log('NULL');
+            creatCookie('promo_code_'+postID,'ok',1);
+            increment_views(postID);
+        }
+        return false;
+    });
+}
+/* ---------------------------------------------------------------------------
+ *  addthis change icon size for 32px
+ * --------------------------------------------------------------------------- */
+
+function Addthis_Change_Icon_Size(size){
+    // jQuery('.main-share .share .addthis_toolbox').removeClass('addthis_default_style');
+    jQuery('.main-share .share .addthis_toolbox').addClass(size);
+}
+
+/* ---------------------------------------------------------------------------
+ *  Contact form 7   jQuery('.wpcf7-show').val().length == 0
+ * --------------------------------------------------------------------------- */
+function cf7_helper(){
+
+    jQuery('.my-radio .wpcf7-radio span:nth-child(2) label').append('<input type="text" name="show-radio" value="" class="wpcf7-show">');
+    jQuery('.wpcf7-show').css('marginLeft','5px');
+
+    jQuery('.my-radio .wpcf7-radio span:nth-child(2) input').click(function(){
+        jQuery('.my-radio .wpcf7-radio span:nth-child(2) input[type="radio"]').attr('checked', true);
+        trigger_after_typing_input();
+    });
+}
+
+function trigger_after_typing_input(){
+    var timeoutReference;
+    jQuery('input.wpcf7-show').keypress(function() {
+        var _this = jQuery(this); // copy of this object for further usage
+
+        if (timeoutReference) clearTimeout(timeoutReference);
+        timeoutReference = setTimeout(function() {
+            jQuery(".wpcf7-hidden").val(_this.val());
+        }, 3000);
+    });
+}
+
+function checkedcf7(){
+    jQuery('.my-radio .wpcf7-radio span:nth-child(2) input, .my-radio .wpcf7-radio span:nth-child(1) input, .my-radio .wpcf7-radio span:nth-child(3) input').change(function(){
+
+        console.log(jQuery('.my-radio .wpcf7-radio span:nth-child(1) input[type="radio"]').length);
+        console.log(jQuery('.my-radio .wpcf7-radio span:nth-child(2) input[type="radio"]').length);
+        console.log(jQuery('.my-radio .wpcf7-radio span:nth-child(3) input[type="radio"]').length);
+        if(jQuery('.my-radio .wpcf7-radio span:nth-child(1) input').is(':checked') || jQuery('.my-radio .wpcf7-radio span:nth-child(3) input').is(':checked') ){
+
+            //alert('ok');
+            //trigger_after_typing_input();
+            jQuery('.wpcf7-show').val('');
+            jQuery(".wpcf7-hidden").val('');
+            jQuery('.my-radio .wpcf7-radio span:nth-child(2) input[type="radio"]').attr('checked', false);
+        }else{
+
+
+        }
+    });
+}
+
+/* ---------------------------------------------------------------------------
+ *  Get variable from URL
+ * --------------------------------------------------------------------------- */
+function urlParam (name){
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++)
+    {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == name)
+        {
+            return sParameterName[1];
+        }
+    }
+}
+
+function decodeURI(url){
+    return decodeURIComponent(url);
+}
+
+
+
+/* ---------------------------------------------------------------------------
+ *  Sticky Menu
+ * --------------------------------------------------------------------------- */
+function sticky_menu(id){
+    jQuery(window).scroll(function(){
+        var scroll = jQuery(window).scrollTop();
+        //console.log	(scroll);
+        jQuery(id).css('top' , scroll +'px');
+    });
+}
+
+
+/* ---------------------------------------------------------------------------
+ *  Scroll Top
+ * --------------------------------------------------------------------------- */
+
+function scrollTop(id){
+    jQuery(window).scroll(function(){
+        if (jQuery(this).scrollTop() > 100) {
+            jQuery(id).fadeIn();
+        } else {
+            jQuery(id).fadeOut();
+        }
+    });
+
+    //Click event to scroll to top
+    jQuery(id).click(function(){
+        jQuery('html, body').animate({scrollTop : 0},800);
+        return false;
+    });
+}
+
+/* ---------------------------------------------------------------------------
+ *  Scroll To Hash With Change page
+ * --------------------------------------------------------------------------- */
+
+
+function scrollToOnChangePage(){
+    var split = jQuery(location).attr('href').split('?');
+    //console.log('toto' + split);
+    setTimeout(function(){
+        var currentHash = "#"+split[1];
+        if (currentHash) {
+            var currentHashPos = jQuery(currentHash).offset().top;
+        }
+
+        //console.log(currentHashPos);
+        jQuery('html, body').animate({scrollTop : currentHashPos}, 400,'swing');
+    }, 100);
+}
+
+/* ---------------------------------------------------------------------------
+ *  	FInd Us
+ *
+ * 	addClassFindUsItem
+ *  	add class pour les onglets avec un Item
+ *
+ * 	scrollTopFindUS
+ * 	scroll pour les onglets
+ * --------------------------------------------------------------------------- */
+function addClassFindUsItem(){
+
+    jQuery(".resp-tab-content").each(function(){
+        var nbChild = jQuery(this).children('div').length;
+        //console.log(nbChild);
+        if (nbChild == 1) {
+            jQuery(this).addClass('oneColumn');
+        };
+    });
+
+}
+
+function scrollTopFindUS(){
+    //Click event to scroll to top
+    jQuery('.resp-tab-item').click(function(){
+        jQuery('html, body').animate({scrollTop : 200},800);
+        return false;
+    });
+}
+
+/* ---------------------------------------------------------------------------
+ *  Clone le lien d'un element
+ * --------------------------------------------------------------------------- */
+function cloneLink(element,hit,value){
+    var e = jQuery(element).attr('href');
+    var h = jQuery(hit);
+
+    h.attr(value, e);
+
+}
+
+/* ---------------------------------------------------------------------------
+ *  EXTRAIRE LE CODE HTML
+ * --------------------------------------------------------------------------- */
+
+function get_dom(){
+    var head = jQuery('#head').html();
+
+    var dom = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">';
+
+    dom += '<html xmlns="http://www.w3.org/1999/xhtml">';
+    dom += '<body>';
+
+    dom += '<head>';
+    dom += head;
+    dom += '</head>';
+
+    dom += jQuery("#content").html();
+    dom += '</body>';
+    dom += '</html>';
+
+    //jQuery('#content-newsletter').hide();
+    /* jQuery('#extract-html').click(function(event) {
+     jQuery('#content-newsletter').text(dom);
+     jQuery('#move').animate({left: "37px"}, 400);
+     //jQuery('#content-newsletter').toggle(50);
+     // alert(dom);
+     }); */
+
+    /* jQuery('#closeblock').click(function(event) {
+     jQuery('#move').animate({left: "-538px"}, 400);
+     }); */
+
+    var x = false
+    jQuery('#extract-html, #closeblock').on('click', function(event){
+        if (!x){
+            jQuery('#content-newsletter').text(dom);
+            jQuery('#move').animate({left: "37px"}, 400);
+            x = true;
+        }
+        else {
+            jQuery('#move').animate({left: "-538px"}, 400);
+            x = false;
+        }
+    });
+
+
+}
+// cleanCategory('#nav_menu-3 .menu a');
+function cleanCategory(target){
+
+    jQuery(target).each(function(index, el) {
+        var text 	= jQuery(this).text();
+        var split 	= text.split('@');
+        jQuery(this).text(split[0]);
+        // console.log(split[0]);
+    });
+
+
+}
+
+function cleanIsotopeFilter(){
+    jQuery('.item-non-classe-2').hide();
+    jQuery('.page-template-page-promotions-php .item-tous-les-produits').hide();
+    jQuery('.page-template-page-events-php .item-tous-les-produits').hide();
+
+}
+
+// Link to Store
+function linkToStore(){
+    var url = "http://www.chem.agilent.com/en-US/Contact-US/Pages/ContactUs.aspx";
+
+    jQuery('.findus-item a,.findus-link a').attr('href', url);
+
+}
+
