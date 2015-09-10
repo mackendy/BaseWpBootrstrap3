@@ -1,31 +1,26 @@
 
-/* Large desktops and laptops */
+/* Large desktops and laptops (min-width: 1200px)*/
 @media (min-width: $screen-lg-min) {
 
 }
-/* Landscape tablets and medium desktops */
+/* Landscape tablets and medium desktops (min-width: 992px) and (max-width: 1199px)*/
 @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
 
-
-
 }
-/* Portrait tablets and small desktops */
+/* Portrait tablets and small desktops (min-width: 768px) and (max-width: 991px) */
 @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-  
 
 }
-/* Landscape phones and portrait tablets */
+/* Landscape phones and portrait tablets (max-width: 767px) */
 @media (max-width: $screen-xs-max) {
- 
 
 }
 
 
-/* Portrait phones and smaller */
+/* Portrait phones and smaller (max-width: 480px)*/
 @media (max-width: $screen-xs) {
 
 }
-
 
 //custom
 @media (max-width: 795px) {
