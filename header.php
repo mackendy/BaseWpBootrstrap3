@@ -25,7 +25,7 @@
 
 	<header>
 
-        <nav class="navbar navbar-inverse">
+        <nav class="navbar navbar-inverse ">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -40,7 +40,7 @@
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
+                    <ul class="nav navbar-left navbar-nav">
                         <?php
                         $args = array(
                             'theme_location' => 'header-menu',
