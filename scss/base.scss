@@ -1,3 +1,5 @@
+// FONT DEFAULT ---------------------------------------------------------
+//@import url(http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900);
 // VENDOR STYLES ---------------------------------------------------------
 
 // BOOTSTRAP
@@ -21,11 +23,27 @@
 //@import "vendor/slick/slick";
 
 
+// BXSLIDER
+@import "vendor/bxslider/jquery.bxslider";
+
 // BASE ------------------------------------------------------------------
 @import "base/menuColor";
 @import "base/variables";
 @import "base/helpers";
 @import "base/mixins";
 @import "base/styles";
-@import "base/responsiveGRid";
+@import "base/menuColor";
+
+// THEME ------------------------------------------------------------------
+@import "theme/generale";
+@import "theme/home";
+
+
+
+// RESPONSIVE ------------------------------------------------------------------
+@import "responsive/embedResponsive";
+@import "responsive/responsiveGRid";
+
+
+
 

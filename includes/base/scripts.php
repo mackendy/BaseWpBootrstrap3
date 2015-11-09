@@ -195,6 +195,17 @@ function load_scripts()
         'set_in_footer' => true
     );
 
+    /** bxslider Slider :: https://github.com/stevenwanderski/bxslider-4 **/
+    $scripts['bxslider'] = array(
+        'active' => true,
+        'deregister_first' => false,
+        'handler' => 'bxslider',
+        //'cdn' => 'http://cdn.jsdelivr.net/jquery.slick/1.5.5/slick.min.js', // make sure the protocol is 'http' and not 'https'
+        'local' => $scripts_path . 'vendor/bxslider/jquery.bxslider.min.js',
+        'dependencies' => false,
+        'version' => '1.5.5',
+        'set_in_footer' => true
+    );
 
     /** fullPage.js :: https://github.com/ericbdev/fullPage.js **/
 
