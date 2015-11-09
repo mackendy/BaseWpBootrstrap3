@@ -1,28 +1,12 @@
 
 /* Large desktops and laptops */
 @media (min-width: $screen-lg-min) {
-  .navbar-nav{
-    float: right;
-  }
-  .navbar-nav .caret {
-    display:none;
-  }
-  .dropdown:hover .dropdown-menu {
-    display: block;
-  }
+
 
 }
 
 @media (min-width: $screen-xs-max) {
-  .navbar-nav {
-    float: right;
-  }
-  .navbar-nav .caret {
-    display:none;
-  }
-  .dropdown:hover .dropdown-menu {
-    display: block;
-  }
+
 }
 
 /* Landscape tablets and medium desktops */
@@ -34,15 +18,11 @@
 /* Portrait tablets and small desktops */
 @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
 
-  header .navbar-default .navbar-primary ul li a {
-    padding: 10px 0 10px 20px;
-  }
+
 }
 /* Landscape phones and portrait tablets */
 @media (max-width: $screen-xs-max) {
-  .navbar-top{
-    display: none;
-  }
+
 
 }
 

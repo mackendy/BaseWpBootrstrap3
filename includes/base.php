@@ -3,7 +3,8 @@
 
 // Helpers
 require_once 'base/helpers.php';
-
+// FormBuilder
+require_once 'base/form-builder.php';
 
 // Shortcodes
 require_once 'base/shortcodes.php';
@@ -59,7 +60,12 @@ function features_init()
     // Custom Meta Boxes
     if (!class_exists('CMB2_Bootstrap_208')) {
         require_once('vendor/custom-meta-boxes/init.php');
+        if ( ! function_exists( 'cmb2_attached_posts_fields_render' ) ) {
+            require_once "vendor/attached-posts/attached-posts.php";
+            //require_once "base/attached-posts.php";
+        }
         require_once 'base/custom-meta-boxes.php';
+        //require_once 'base/admin-option.php';
         add_filter('cmb2_meta_boxes', 'set_custom_meta_boxes');
         remove_templates_support();
     }
@@ -94,6 +100,9 @@ add_action('get_header', 'features_get_header');
 
 function features_wp_enqueue_scripts()
 {
+
+    //jquery
+    wp_enqueue_script('jquery','http://code.jquery.com/jquery-1.11.3.min.js');
     //  Custom Stylesheet
     wp_register_style('custom_stylesheet', get_template_directory_uri() . '/css/base.css');
     wp_enqueue_style('custom_stylesheet');

@@ -12,7 +12,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
     <title><?php bloginfo('name'); ?></title>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	<?php
     $favicon_path = get_template_directory_uri().'/images/favicon/';
     set_favicons($favicon_path);
@@ -49,7 +49,8 @@
                             'container_class'   => 'collapse navbar-collapse',
                             'menu_class'        => 'nav navbar-nav',
                             'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
-                            'walker'            => new wp_bootstrap_navwalker()
+                            'walker'            => new wp_bootstrap_navwalker(),
+                            'items_wrap' => my_nav_wrap(),
                         );
                         wp_nav_menu($args);
                         ?>

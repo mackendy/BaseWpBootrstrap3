@@ -10,7 +10,7 @@ function load_scripts()
 
     /** jQuery :: http://jquery.com/ **/
     $scripts['jquery'] = array(
-        'active' => true,
+        'active' => false,
         'deregister_first' => true,
         'handler' => 'jquery',
         'cdn' => 'http://code.jquery.com/jquery-1.11.3.min.js', // make sure the protocol is 'http' and not 'https'

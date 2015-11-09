@@ -33,12 +33,65 @@ class Walker_Foundation_Topbar extends Walker_Nav_Menu {
     }
 }
 
+// security -----------------------------------------------------------------
+
+//<files readme.html>
+//order allow,deny
+//        deny from all
+//</files>
+
+add_filter( 'auto_update_plugin', '__return_false' );
+add_filter( 'auto_update_theme', '__return_false' );
+add_filter( 'automatic_updater_disabled', '__return_false' );
+add_filter( 'auto_update_core', '__return_false' );
+remove_action('wp_head', 'wp_generator');
+
 
 // THEME -----------------------------------------------------------------
 
 
 
+function my_nav_wrap() {
+    // default value of 'items_wrap' is <ul id="%1$s" class="%2$s">%3$s</ul>'
 
+    // open the <ul>, set 'menu_class' and 'menu_id' values
+    $wrap  = '<ul id="%1$s" class="%2$s">';
+
+    // get nav items as configured in /wp-admin/
+    $wrap .= '%3$s';
+
+
+    $wrap .= '</ul>';
+
+    return $wrap;
+}
+
+function my_nav_wrap_wpml() {
+    // default value of 'items_wrap' is <ul id="%1$s" class="%2$s">%3$s</ul>'
+
+    // open the <ul>, set 'menu_class' and 'menu_id' values
+    $wrap  = '<ul id="%1$s" class="%2$s">';
+
+    // get nav items as configured in /wp-admin/
+    $wrap .= '%3$s';
+
+    $languages = icl_get_languages('skip_missing=0&orderby=code');
+    $wrap .='<li class="text-uppercase">';
+    foreach($languages as $l){
+        foreach($languages as $l){
+            if(!$l['active']) $langs[] = '<a href="'.$l['url'].'">'.$l['language_code'].'</a>';
+
+        }
+    }
+    $wrap .=$langs[0];
+    $wrap .='</li>';
+
+
+
+    $wrap .= '</ul>';
+
+    return $wrap;
+}
 
 
 

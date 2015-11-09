@@ -51,3 +51,65 @@
   -o-transition: opacity $duration;
   transition: opacity $duration;
 }
+
+
+@mixin transition($transition-property: all, $transition-time: 1s, $method: ease) { //implied defaults
+  -webkit-transition: $transition-property $transition-time $method;
+  -moz-transition:    $transition-property $transition-time $method;
+  -ms-transition:     $transition-property $transition-time $method;
+  -o-transition:      $transition-property $transition-time $method;
+  transition:         $transition-property $transition-time $method;
+}
+
+
+@mixin border-radius($radius: 0) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius:    $radius;
+  border-radius:         $radius;
+}
+
+
+
+@mixin link-colors($normal, $hover: false, $active: false, $visited: false, $focus: false) {
+  color: $normal;
+  @if $visited {
+    &:visited {
+      color: $visited;
+    }
+  }
+  @if $focus {
+    &:focus {
+      color: $focus;
+    }
+  }
+  @if $hover {
+    &:hover {
+      color: $hover;
+    }
+  }
+  @if $active {
+    &:active {
+      color: $active;
+    }
+  }
+}
+
+@mixin hover-link {
+  text-decoration: none;
+  &:hover, &:focus {
+    text-decoration: none;
+  }
+}
+
+@mixin box-sizing($box-model: $default-box-sizing) {
+  $box-model: unquote($box-model);
+  @include prefixed-properties(css3-boxsizing, $box-sizing-support-threshold, (box-sizing: $box-model));
+}
+
+@mixin prefixed-properties($capability, $threshold, $properties, $capability-options: $default-capability-options) {
+  @include with-each-prefix($capability, $threshold, $capability-options) {
+    @each $prop, $value in $properties {
+      @include prefix-prop($prop, $value);
+    }
+  }
+}

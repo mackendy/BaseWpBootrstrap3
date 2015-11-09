@@ -1,31 +1,65 @@
 
+
 /* Large desktops and laptops (min-width: 1200px)*/
 @media (min-width: $screen-lg-min) {
 
+  .pull-lg-left {
+    float: left;
+  }
+  .pull-lg-right {
+    float: right;
+  }
 }
 /* Landscape tablets and medium desktops (min-width: 992px) and (max-width: 1199px)*/
 @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
-
+  .pull-md-left {
+    float: left;
+  }
+  .pull-md-right {
+    float: right;
+  }
 }
 /* Portrait tablets and small desktops (min-width: 768px) and (max-width: 991px) */
 @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-
+  .pull-sm-left {
+    float: left;
+  }
+  .pull-sm-right {
+    float: right;
+  }
 }
 /* Landscape phones and portrait tablets (max-width: 767px) */
 @media (max-width: $screen-xs-max) {
-
+  body {
+    font-size:90%;
+  }
+  .pull-xs-max-left {
+    float: left;
+  }
+  .pull-xs-max-right {
+    float: right;
+  }
 }
 
 
 /* Portrait phones and smaller (max-width: 480px)*/
 @media (max-width: $screen-xs) {
-
+  body {
+    font-size:80%;
+  }
+  .pull-xs-left {
+    float: left;
+  }
+  .pull-xs-right {
+    float: right;
+  }
 }
 
 //custom
 @media (max-width: 795px) {
 
 }
+
 
 
 

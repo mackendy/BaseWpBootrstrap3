@@ -1,0 +1,279 @@
+html, body {
+  //height: 100%;
+  //margin: 0px;
+}
+html {
+  background: $color-white;
+}
+body{
+  font-family: 'Lato', sans-serif!important;
+  font-size:100%; /* flexible baseline */
+  font-size: #{$default-text-size}px;
+}
+
+
+//Text
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2em;
+}
+h1{font-size: 1.25em; }
+h2{font-size: 1.125em;  }
+h3{font-size:  1em; }
+p{font-size: 0.875em;line-height: 0.875em; }
+.sub_text{font-size:  0.75em; }
+.foot_note{font-size: 0.625em; }
+
+.text-italic{
+  font-style: italic;
+}
+
+
+
+
+
+.color-white{
+  color: $color-white;
+}
+.color-orange{
+  color: $color-orange;
+}
+.color-orange-light{
+  color: $color-orange-light;
+}
+.color-blue{
+  color: $color-blue;
+}
+.color-blue-light{
+  color: $color-blue-light;
+}
+.color-gray{
+  color: $color-gray;
+}
+.color-gray-light{
+  color: $color-gray-light;
+
+
+
+}
+.color-gray-btn{
+  color: $color-gray-btn;
+}
+
+.bg-white{
+  background: $color-white;
+}
+.bg-orange{
+  background: $color-orange;
+}
+.bg-orange-light{
+  background: $color-orange-light;
+}
+
+.bg-blue{
+  background: $color-blue;
+}
+.bg-blue-light{
+  background: $color-blue-light;
+}
+
+.bg-gray{
+  background: $color-gray;
+}
+.bg-gray-light{
+  background: $color-gray-light;
+}
+.bg-gray-btn{
+  background: $color-gray-btn;
+}
+.border-bottom-2-blue{
+  border-bottom: 2px solid $color-blue;
+}
+.border-bottom-2-orange{
+  border: 0px outset buttonface;
+  border-bottom: 2px solid $color-orange;
+}
+.border-bottom-2-blue{
+  border: 0px outset buttonface;
+  border-bottom: 2px solid $color-blue;
+}
+.border-bottom-2-gray{
+  border: 0px outset buttonface;
+  border-bottom: 2px solid $color-gray;
+}
+
+.inlineblock{
+  display: inline-block;
+  margin: 11px;
+}
+.inline-block{
+  display: inline-block;
+}
+.relative{position: relative;}
+.absolute{position: absolute;}
+@media only screen and (max-width: 991px) {
+  .absolute{position: inherit;}
+  .tablette-padding-bottom{padding-bottom: 20px;}
+}
+.padding{
+  padding: #{$height}px  0;
+}
+.padding-min{
+  padding: #{$height/2}px 0;
+}
+.padding-all{
+  padding: #{$height}px;
+}
+.padding-all-min{
+  padding: #{$height/2}px;
+}
+.padding-all-normal{
+  padding:  #{$height/4}px;
+}
+.padding-bottom{
+  padding-bottom: #{$height}px;
+}
+.padding-bottom-min{
+  padding-bottom:  #{$height/2}px;
+}
+.padding-top{
+  padding-top: #{$height}px;
+}
+.padding-top-min{
+  padding-top:  #{$height/2}px;
+}
+.padding-left{
+  padding-left: #{$height}px;
+}
+.padding-left-min{
+  padding-left:  #{$height/2}px;
+}
+.padding-right{
+  padding-right: #{$height}px;
+}
+.padding-right-min{
+  padding-right:  #{$height/2}px;
+}
+.padding-btn {
+  padding: 15px 60px;
+}
+
+
+
+
+.margin{
+  margin: #{$height}px  0;
+}
+.margin-min{
+  margin: #{$height/2}px 0;
+}
+
+.margin-normal{
+  margin:  #{$height/4}px  0;
+}
+.margin-top{
+  margin-top: #{$height}px;
+}
+.margin-top-min{
+  margin-top:  #{$height/2}px;
+}
+.margin-top-normal{
+  margin-top:  #{$height/4}px;
+}
+.margin-bottom{
+  margin-bottom: #{$height}px;
+}
+.margin-bottom-min{
+  margin-bottom:  #{$height/2}px;
+}
+.margin-bottom-normal{
+  margin-bottom:  #{$height/4}px;
+}
+
+.warp-text-80{
+  width: 80%;
+}
+
+
+.centered-block {
+  left: 50%;
+  top: 50%;
+  position: absolute;
+}
+.lighter{
+  font-weight: $lighter;
+}
+.bold{
+  font-weight: $bold;
+}
+
+a.btn-base{
+  padding: 10px;
+}
+.btn-hover-blue:hover{
+  background-color: $color-blue;
+}
+.btn-hover-orange:hover{
+  background-color: $color-orange;
+}
+.btn-hover-gray:hover{
+  background-color: $color-gray;
+}
+.color-hover-white:hover{
+  color:white;
+}
+.color-hover-inherit:hover{
+  color:inherit;
+}
+.btn-radius{
+  @include border-radius(5px);
+}
+
+a{
+  @include transition(all, 0.2s, ease);
+  //link-colors($normal, $hover, $active, $visited, $focus)
+  @include link-colors(#000,#000,#000,#000,#000);
+
+  @include hover-link();
+}
+
+
+
+.arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+
+  border-bottom: 5px solid #fff;
+}
+
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+
+  border-top: 20px solid #f1f1f1;
+}
+
+.arrow-right {
+  width: 0;
+  height: 0;
+  border-top: 60px solid transparent;
+  border-bottom: 60px solid transparent;
+
+  border-left: 60px solid #fff;
+}
+
+.arrow-left {
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+
+  border-right:10px solid #fff;
+}
+
+.pointer:hover{
+  cursor: pointer;
+}
